@@ -130,9 +130,7 @@ $(function() {
             }
         }
         else if (data.send_type == 'save') {
-            if (data.cookie == document.cookie) {
-                $('#saveMark').html('Saved ✔')
-            }
+             $('#saveMark').html('Saved ✔')
         }
     };
 
