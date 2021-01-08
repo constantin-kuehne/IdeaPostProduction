@@ -98,6 +98,7 @@ $(function() {
         if (data.send_type == 'write') {
             if (data.cookie != document.cookie) {
                 document.getElementById(data.id).childNodes[3].value = data.content
+                $('#saveMark').html('Changes are not saved ✖')
             }
         }
         else if (data.send_type == 'move') {
@@ -107,12 +108,14 @@ $(function() {
                 document.getElementById(data.id).style.backgroundColor = data.color
                 document.getElementById(data.id).childNodes[3].style.backgroundColor = data.color
                 document.getElementById(data.id).childNodes[3].style.zIndex = data.zIndex
+                $('#saveMark').html('Changes are not saved ✖')
             }
         }
         else if (data.send_type == 'resize') {
             if (data.cookie != document.cookie) {
                 document.getElementById(data.id).childNodes[3].style.width = (data.width - 20) + "px"
                 document.getElementById(data.id).childNodes[3].style.height = (data.height - 4) + "px"
+                $('#saveMark').html('Changes are not saved ✖')
             }
         }
         else if (data.send_type == 'create') {
@@ -127,7 +130,9 @@ $(function() {
             }
         }
         else if (data.send_type == 'save') {
+            if (data.cookie == document.cookie) {
                 $('#saveMark').html('Saved ✔')
+            }
         }
     };
 
