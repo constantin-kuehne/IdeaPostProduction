@@ -1,2 +1,2 @@
-# post_it_website
+## IdeaPost
  
