@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'post_it/logo_copy.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'post_it/styling_signup.css' %}">
+    
+
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="{% static 'post_it/logo_copy.svg' %}">
+            <h1>IdeaPost</h1>
+            <p>Remember your ideas and collaborate with others with IdeaPost</p>
+        </div>
+        <div class="login">
+            <form action="" method="POST" id="sign_up" name="sign_up">
+                <h1>Sign Up</h1>
+                {{ form.errors }}
+                {% csrf_token %}
+
+                <label>{{ form.username.label }}</label>
+                {{ form.username }}
+
+                <label>{{ form.email.label }}</label>
+                {{ form.email }}
+
+                <label>{{ form.password1.label }}</label>
+                {{ form.password1 }}
+
+                <label>{{ form.password2.label }}</label>
+                {{ form.password2 }}
+                <div class="buttons">
+                    <input class="button-input" type="submit" name="SignUp" value="Sign Up">
+                    <button class="button-input" type="button"><a class="LoginButton" href="/login/">Already have an account?</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const form_fields = document.getElementsByTagName('input')
+        form_fields[1].placeholder = 'Username...'
+        form_fields[2].placeholder = 'Email...'
+        form_fields[3].placeholder = 'Enter password...'
+        form_fields[4].placeholder = 'Confirm password...'
+
+        for (let field of form_fields) {
+            field.className = "text-input"
+        }
+
+        form_fields[5].className = "button-input";
+    </script>
+</body>
+</html>

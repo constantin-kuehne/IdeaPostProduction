@@ -1,0 +1,187 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("pinwall-min.jpg"); /* image by: topntp26 on Freepik */
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    text-align: left;
+}
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #373737;
+    padding: 0;
+    padding-bottom: 20px;
+    margin: 0;
+    width: 100vw;
+}
+.logo {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+}
+.logo h1 {
+    color: #ffffff;
+    margin-left: 20px;
+}
+
+.logo h2 {
+    color: #ffffff;
+    margin-left: 30px;
+}
+.logo img {
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+}
+.draggable {
+    position: absolute;
+    background-color: lightblue;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    z-index: 0;
+    opacity: 0.99;
+}
+.author {
+    cursor: move;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 300px;
+    min-height: 100px;
+    background-color: lightblue;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.thumbtacks {
+    position: absolute; 
+    left: 5px;
+    width: 51px;
+    height: 44.5px;
+}
+.remove-button {
+    position: absolute;
+    right: 0;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+.cross {
+    width: 25px;
+    height: 25px;
+    border: none;
+}
+.button {
+    width: 60px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    background-color: #7a5200;
+    color: lightgray;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.button:hover {
+    background-color: #5a3c00;
+}
+.dropdown {
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.dropdown:hover {
+    cursor: pointer;
+}
+.dropdown ul {
+    display: none;
+}
+.show ul {
+    cursor: default;
+    border: 1px solid lightgray;
+    list-style: none;
+    margin: 0;
+    display: inline-flex;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    flex-direction: column;
+    text-align: left;
+    width: 80px;
+    padding: 5px;
+}
+.listbutton {
+    border: none;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 80px;
+    text-align: left;
+}
+.listbutton:hover {
+    background-color: lightgray;
+}
+.dropdowncolor {
+    display: inline-block;
+    position: relative;
+}
+.dropdowncolor ul {
+    display: none;
+}
+.showcolor ul {
+    border: 1px solid lightgray;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding: 5px;
+    display: inline-flex;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    flex-direction: column;
+    text-align: left;
+    width: 80px;
+}
+.dropdownground {
+    display: inline-block;
+    position: relative;
+}
+.dropdownground ul {
+    display: none;
+}
+.showground ul {
+    border: 1px solid lightgray;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding: 5px;
+    display: inline-flex;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    flex-direction: column;
+    text-align: left;
+    width: 80px;
+}

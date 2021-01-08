@@ -1,0 +1,83 @@
+{% extends 'post_it/base.html' %}
+{% load static %}
+
+{% block title %}Sessions{% endblock %}
+
+{% block styling %}
+    <link rel="stylesheet" type="text/css" href="{% static 'post_it/styling_sessions.css' %}">
+    <script defer type="text/javascript" src="{% static 'post_it/session.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container"> 
+        <div class="header">
+            <div class="logo">
+                <img src="{% static 'post_it/logo_copy.svg' %}">
+                <h1>IdeaPost</h1>
+            </div>
+            <div>
+                <button type="button" id="newSession" class="button">New Session</button>
+                <form method="POST" action="" style="display: inline">
+                    {% csrf_token %}
+                    <input type="submit" name="logout" value="Logout" class="button" style="margin-left: 10px">
+                </form>
+            </div>
+        </div>
+        <div class="sessions-list">
+            {% for session in sessions %}
+                <div class="session">
+                    <div class="sessionTitle">
+                        <h3>{{ session.session_id.name }}</h3>
+                        <h5>Code: {{ session.session_id.session_code }}</h5>
+                    </div>
+                    <div class="sessionFunctions">
+                        <div class="session-function">
+                            <div class="currentMembersModal">
+                                <div class="currentMembersModalContent">
+                                    <div class="close currentMembersClose">❌</div>
+                                    {% for user in session.session_id.user_session_set.all %}
+                                        <p>{{ user.user_id.username }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <button class="form-input currentMembers" id="currentMembers">Members</button>
+                        </div>
+                        <div class="session-function">
+                            <div class="addUserModal">
+                                <div class="addUserModalContent">
+                                    <div class="close addUserClose">❌</div>
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        <label for="addUser">Add user to session</label><br><br>
+                                        <input type="text" id="addUser" name="userToAdd" class="text-form"><br><br>
+                                        <input type="hidden" name="sessionCode" value="{{ session.session_id.session_code }}">
+                                        <input type="submit" class="form-input" style="font-size: 13px; padding: 7px" value="Add user"><br>
+                                    </form>
+                                </div>
+                            </div>
+                            <button class="form-input addMember" id="addMember" style="width: 137.58px;">Add Member</button>
+                        </div>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ session.session_id.id }}" name="sessionChoice">
+                            <input type="submit" class="form-input" value="Join">
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Modal: Pop-Up for session creation -->
+    <div id="newSessionModal" class="newSessionModal">
+        <div class="newSessionModalContent">
+            <div id="newSessionClose" class="close">❌</div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <label for="newSessionName">What should the new session be called?</label><br><br>
+                <input type="text" id="newSessionName" name="newSessionName" class="text-form"><br><br>
+                <input type="submit" class="form-input" style="font-size: 13px; padding: 7px" value="Create Session">
+            </form>
+        </div>
+    </div>
+    <div id="darker" class="darker"></div>
+{% endblock %}

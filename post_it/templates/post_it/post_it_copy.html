@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IdeaPost</title>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'post_it/logo_copy.ico' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'post_it/styling_post_it.css' %}">
+    </head>
+<body>
+    <script type="text/javascript" src="{% static 'post_it/jQuery-min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'post_it/reconnecting-websocket.min.js' %}"></script>
+    <div class="header">
+        <div class="logo">
+            <img src="{% static 'post_it/logo_copy.svg' %}">
+            <h1>IdeaPost</h1>
+            <h2 id="saveMark">Saved ✔</h2>
+        </div>
+        <button type="button" class="button" id="homeButton" onclick="window.location.href = '/sessions/'" style="margin-left: 20px">Home</button>
+        <button type="button" class="button" id="createButton">New</button>
+        <button type="button" class="button" id="saveButton">Save</button>
+        <form action="" method="POST" style="display: inline;">
+            {% csrf_token %}
+            <input name="logout" type="submit" class="button" value="Logout"></input>
+        </form>
+    </div>
+    {% for post_it in post_its %}
+    <div class="draggable" id="{{ post_it.htmlId }}" style="background-color: {{ post_it.color }}; top: {{ post_it.top }}px; left: {{ post_it.left }}px; z-index: {{ post_it.zindex }};">
+        <div class="author">
+            <img src="{% static 'post_it/thumbtacks-min.png' %}" class="thumbtacks">
+            <div class="dropdown"><img src="{% static 'post_it/kebab-menu-smaller.png' %}" style="border-radius: 20px;">
+                <ul>
+                    <li><button class="listbutton deleteButton">Delete</button></li>
+                    <li><div class="dropdowncolor">
+                            <button class="listbutton" onclick="showDropdownColor(this)">Color ></button>
+                            <ul>
+                                <li><button class="listbutton" onclick="changeColor(this)">lightblue</li>
+                                <li><button class="listbutton" onclick="changeColor(this)">pink</li>
+                                <li><button class="listbutton" onclick="changeColor(this)">yellow</li>
+                                <li><button class="listbutton" onclick="changeColor(this)">lightgreen</li>
+                                <li><button class="listbutton" onclick="changeColor(this)">orange</li>
+                                <li><button class="listbutton" onclick="changeColor(this)">purple</li>
+                                <li><button class="listbutton" onclick="changeColor(this)">olive</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><div class="dropdownground">
+                            <button class="listbutton" onclick="showDropdownGround(this)">Ground ></button>
+                            <ul>
+                                <li><button class="listbutton" onclick="indexUp(this)">Up +</li>
+                                <li><button class="listbutton" onclick="indexDown(this)">Down -</li>
+                            </ul>
+                    </div></li>
+                </ul>
+            </div>
+            <br>
+            <h3>{{ post_it.author }}</h3>
+        </div>
+        <textarea class="textarea" style="background-color: {{ post_it.color }}; height: {{ post_it.height }}px; width: {{ post_it.width }}px;" spellcheck="false">{{ post_it.content }}</textarea>
+    </div>
+    {% endfor %}
+    {{ session|json_script:"session" }}
+    {{ user.username|json_script:"username" }}
+    <script>
+        const thumbtackUrl = "{% static 'post_it/thumbtacks-min.png' %}";
+        const optionsUrl = "{% static 'post_it/kebab-menu-smaller.png' %}";
+    </script>
+    <script type="text/javascript" src="{% static 'post_it/ideapost-min.js' %}"></script>
+</body>
+</html>
