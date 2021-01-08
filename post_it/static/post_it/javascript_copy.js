@@ -94,7 +94,6 @@ $(function() {
     
     savesock.onmessage = function(message) {
         var data = JSON.parse(message.data);
-        console.log(data)
         if (data.send_type == 'write') {
             if (data.cookie != document.cookie) {
                 document.getElementById(data.id).childNodes[3].value = data.content
@@ -202,7 +201,6 @@ $(function() {
         newPostIt = createPostIt(postAuthor)
         message = postItSyncEle(newPostIt, 'create')
         message['session_code'] = session_id
-        console.log(message)
         savesock.send(JSON.stringify(message))
         return false
     });
