@@ -166,6 +166,7 @@ $(function() {
         $('.textarea').bind('input propertychange', function(event) {
             var message = postItSyncEle(event.target.parentElement, "write");
             savesock.send(JSON.stringify(message));
+            $('#saveMark').html('Changes are not saved ✖')
             return false;
         });
     };
